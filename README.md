@@ -1,2 +1,2 @@
 # games-memory-wod
-Kid game to exercise memory
+Kids game to exercise memory
