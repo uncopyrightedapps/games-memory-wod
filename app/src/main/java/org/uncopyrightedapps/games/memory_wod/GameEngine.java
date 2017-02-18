@@ -8,7 +8,6 @@ public class GameEngine {
 
     private int rowCount;
     private int colCount;
-
     private Piece pieces[];
 
     private HashMap piecesForNumber = new HashMap();
@@ -59,7 +58,6 @@ public class GameEngine {
     public void shuffle() {
         shuffleArray(pieces);
     }
-
 
     public Piece[] getPieces() {
         return pieces;
