@@ -5,9 +5,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.Toast;
 
 import org.uncopyrightedapps.games.memory_wod.engine.GameEngine;
 
@@ -27,13 +25,7 @@ public class PlayGameActivity extends AppCompatActivity {
         gridview = (GridView) findViewById(R.id.gridview);
         gridview.setNumColumns(mEngine.colCount());
 
-        final PieceAdapter adapter = new PieceAdapter(this.getApplicationContext(), mEngine);
-        gridview.setAdapter(adapter);
-        gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-                Toast.makeText(PlayGameActivity.this, "" + position, Toast.LENGTH_SHORT).show();
-            }
-        });
+        setAdapter();
 
         FloatingActionButton exitButton = (FloatingActionButton) findViewById(R.id.exitButton);
         FloatingActionButton restartButton = (FloatingActionButton) findViewById(R.id.restartButton);
@@ -49,9 +41,14 @@ public class PlayGameActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 mEngine.reset();
-                adapter.notifyDataSetChanged();
+                setAdapter();
             }
         });
+    }
+
+    private void setAdapter() {
+        PieceAdapter adapter = new PieceAdapter(getApplicationContext(), mEngine);
+        gridview.setAdapter(adapter);
     }
 
     @Override

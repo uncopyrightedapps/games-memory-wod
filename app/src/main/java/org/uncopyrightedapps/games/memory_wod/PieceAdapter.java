@@ -1,6 +1,7 @@
 package org.uncopyrightedapps.games.memory_wod;
 
 import android.content.Context;
+import android.media.MediaPlayer;
 import android.os.Handler;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
@@ -17,6 +18,8 @@ import java.util.List;
 public class PieceAdapter extends BaseAdapter {
 
     private static final String PIECE_BACK = "";
+    private final MediaPlayer mMediaPlayer;
+    private final MediaPlayer mMediaPlayerGameOver;
 
     private Context mContext;
     private GameEngine mEngine;
@@ -29,6 +32,9 @@ public class PieceAdapter extends BaseAdapter {
         this.mEngine = engine;
 
         this.mViewMap = new SparseArray<>();
+
+        this.mMediaPlayer = MediaPlayer.create(mContext, R.raw.applause);
+        this.mMediaPlayerGameOver = MediaPlayer.create(mContext, R.raw.long_applause);
     }
 
     @Override
@@ -55,7 +61,7 @@ public class PieceAdapter extends BaseAdapter {
             Piece piece = (Piece) getItem(position);
 
             TextView textView = (TextView) pieceView.findViewById(R.id.pieceText);
-            textView.setText(getPieceText(piece));
+            textView.setText(getPieceText(position, piece));
 
             textView.setOnClickListener(new PieceOnClickListener(mEngine, position));
         } else {
@@ -64,7 +70,7 @@ public class PieceAdapter extends BaseAdapter {
             Piece piece = (Piece) getItem(position);
 
             TextView textView = (TextView) pieceView.findViewById(R.id.pieceText);
-            textView.setText(getPieceText(piece));
+            textView.setText(getPieceText(position, piece));
         }
         return pieceView;
     }
@@ -73,8 +79,8 @@ public class PieceAdapter extends BaseAdapter {
         return (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
-    private String getPieceText(Piece piece) {
-        if (piece.isFlipped()) {
+    private String getPieceText(int position, Piece piece) {
+        if (mEngine.isFlipped(position)) {
             return Integer.toString(piece.getPieceNumber());
         } else {
             return PIECE_BACK;
@@ -96,7 +102,7 @@ public class PieceAdapter extends BaseAdapter {
         public void onClick(View v) {
             mEngine.flip(mPosition);
             TextView textView = (TextView) v;
-            textView.setText(getPieceText(mPiece));
+            textView.setText(getPieceText(mPosition, mPiece));
 
             mViewMap.put(mPosition, textView);
 
@@ -114,7 +120,12 @@ public class PieceAdapter extends BaseAdapter {
                         }
                     }, 1000);
                 } else {
-                    mEngine.clearFlippedPieces();
+                    if (mEngine.gameOver()) {
+                        mMediaPlayerGameOver.start();
+                    } else {
+                        mMediaPlayer.start();
+                        mEngine.clearFlippedPieces();
+                    }
                 }
             }
         }

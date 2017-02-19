@@ -8,6 +8,7 @@ import java.util.Random;
 
 public class GameEngine {
 
+    private int flippedCount;
     private int rowCount;
     private int colCount;
     private Piece pieces[];
@@ -34,6 +35,7 @@ public class GameEngine {
         }
 
         flippedPieces = new ArrayList<Integer>();
+        flippedCount = 0;
     }
 
     public int rowCount() {
@@ -110,7 +112,11 @@ public class GameEngine {
         if (numberOfPiecesFlippedIs(2)) {
             Piece piece1 = pieces[flippedPieces.get(0)];
             Piece piece2 = pieces[flippedPieces.get(1)];
-            return piece1.getPieceNumber() != piece2.getPieceNumber();
+            boolean notFound = piece1.getPieceNumber() != piece2.getPieceNumber();
+            if (!notFound) {
+                flippedCount++;
+            }
+            return notFound;
         }
         return false;
     }
@@ -134,7 +140,11 @@ public class GameEngine {
         }
         clearFlippedPieces();
         shuffle();
+        flippedCount = 0;
     }
 
+    public boolean gameOver() {
+        return flippedCount == piecesCount() / 2;
+    }
 }
 

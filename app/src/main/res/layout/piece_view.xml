@@ -7,8 +7,9 @@
         android:id="@+id/pieceText"
         android:layout_height="wrap_content"
         android:layout_width="fill_parent"
-        android:height="100dp"
+        android:height="75dp"
         android:textSize="50sp"
+        android:layout_gravity="center_vertical"
         style="@android:style/Widget.Holo.Button" />
 
 </LinearLayout>
