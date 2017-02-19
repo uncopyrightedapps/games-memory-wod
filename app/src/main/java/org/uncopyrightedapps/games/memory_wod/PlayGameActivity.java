@@ -1,6 +1,7 @@
 package org.uncopyrightedapps.games.memory_wod;
 
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -26,12 +27,29 @@ public class PlayGameActivity extends AppCompatActivity {
         gridview = (GridView) findViewById(R.id.gridview);
         gridview.setNumColumns(mEngine.colCount());
 
-        PieceAdapter adapter = new PieceAdapter(this.getApplicationContext(), mEngine);
+        final PieceAdapter adapter = new PieceAdapter(this.getApplicationContext(), mEngine);
         gridview.setAdapter(adapter);
-
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
                 Toast.makeText(PlayGameActivity.this, "" + position, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        FloatingActionButton exitButton = (FloatingActionButton) findViewById(R.id.exitButton);
+        FloatingActionButton restartButton = (FloatingActionButton) findViewById(R.id.restartButton);
+
+        exitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        restartButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mEngine.reset();
+                adapter.notifyDataSetChanged();
             }
         });
     }

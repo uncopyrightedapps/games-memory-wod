@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.uncopyrightedapps.games.memory_wod.engine.GameEngine;
 import org.uncopyrightedapps.games.memory_wod.engine.Piece;
@@ -61,6 +60,11 @@ public class PieceAdapter extends BaseAdapter {
             textView.setOnClickListener(new PieceOnClickListener(mEngine, position));
         } else {
             pieceView = convertView;
+
+            Piece piece = (Piece) getItem(position);
+
+            TextView textView = (TextView) pieceView.findViewById(R.id.pieceText);
+            textView.setText(getPieceText(piece));
         }
         return pieceView;
     }

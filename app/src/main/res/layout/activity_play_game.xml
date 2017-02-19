@@ -2,7 +2,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorAccent"
     tools:context="org.uncopyrightedapps.games.memory_wod.PlayGameActivity">
 
     <GridView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -17,4 +16,25 @@
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
         />
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="8dp"
+        android:clickable="true"
+        android:id="@+id/exitButton"
+        android:src="@drawable/ic_exit_to_app_black_24dp" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="8dp"
+        android:id="@+id/restartButton"
+        android:layout_toStartOf="@id/exitButton"
+        android:clickable="true"
+        android:src="@drawable/ic_autorenew_black_24dp" />
+
 </RelativeLayout>

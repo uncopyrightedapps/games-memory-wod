@@ -47,4 +47,8 @@ public class Piece implements Serializable {
 
         return pieceNumber == piece.pieceNumber;
     }
+
+    public void reset() {
+        flipped = false;
+    }
 }

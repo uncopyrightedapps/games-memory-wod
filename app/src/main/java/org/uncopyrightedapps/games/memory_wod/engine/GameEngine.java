@@ -121,11 +121,20 @@ public class GameEngine {
             pieces[position].flip();
         }
         clearFlippedPieces();
-
         return positions;
     }
 
     public void clearFlippedPieces() {
         flippedPieces.clear();
     }
+
+    public void reset() {
+        for (Piece piece : pieces) {
+            piece.reset();
+        }
+        clearFlippedPieces();
+        shuffle();
+    }
+
 }
+
