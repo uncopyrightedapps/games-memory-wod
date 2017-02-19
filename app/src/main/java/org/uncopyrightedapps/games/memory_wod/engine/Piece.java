@@ -1,6 +1,8 @@
-package org.uncopyrightedapps.games.memory_wod;
+package org.uncopyrightedapps.games.memory_wod.engine;
 
-public class Piece {
+import java.io.Serializable;
+
+public class Piece implements Serializable {
     private boolean flipped = false;
     private Piece sibling;
     private int pieceNumber;
@@ -44,10 +46,5 @@ public class Piece {
         Piece piece = (Piece) o;
 
         return pieceNumber == piece.pieceNumber;
-    }
-
-    @Override
-    public int hashCode() {
-        return pieceNumber;
     }
 }

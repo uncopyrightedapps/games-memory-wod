@@ -1,7 +1,9 @@
-package org.uncopyrightedapps.games.memory_wod;
+package org.uncopyrightedapps.games.memory_wod.engine;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Random;
 
 public class GameEngine {
@@ -9,6 +11,7 @@ public class GameEngine {
     private int rowCount;
     private int colCount;
     private Piece pieces[];
+    private List<Integer> flippedPieces;
 
     private HashMap piecesForNumber = new HashMap();
 
@@ -29,6 +32,8 @@ public class GameEngine {
 
             piecesForNumber.put(pieceNumber, new Piece[]{piece, piece.getSibling()});
         }
+
+        flippedPieces = new ArrayList<Integer>();
     }
 
     public int rowCount() {
@@ -44,11 +49,24 @@ public class GameEngine {
     }
 
     public boolean isFlipped(int rowIndex, int colIndex) {
-        return pieces[getIndex(rowIndex, colIndex)].isFlipped();
+        return isFlipped(getIndex(rowIndex, colIndex));
+    }
+
+    public boolean isFlipped(int position) {
+        return pieces[position].isFlipped();
     }
 
     public void flip(int rowIndex, int colIndex) {
-        pieces[getIndex(rowIndex, colIndex)].flip();
+        flip(getIndex(rowIndex, colIndex));
+    }
+
+    public void flip(int position) {
+        Piece piece = pieces[position];
+
+        if (!piece.isFlipped()) {
+            piece.flip();
+            flippedPieces.add(position);
+        }
     }
 
     public Piece[] getPiecesForNumber(int pieceNumber) {
@@ -84,4 +102,30 @@ public class GameEngine {
         }
     }
 
+    public boolean numberOfPiecesFlippedIs(int count) {
+        return flippedPieces.size() == count;
+    }
+
+    public boolean matchNotFound() {
+        if (numberOfPiecesFlippedIs(2)) {
+            Piece piece1 = pieces[flippedPieces.get(0)];
+            Piece piece2 = pieces[flippedPieces.get(1)];
+            return piece1.getPieceNumber() != piece2.getPieceNumber();
+        }
+        return false;
+    }
+
+    public List<Integer> resetFlippedPieces() {
+        ArrayList<Integer> positions = new ArrayList<>(flippedPieces);
+        for (int position : positions) {
+            pieces[position].flip();
+        }
+        clearFlippedPieces();
+
+        return positions;
+    }
+
+    public void clearFlippedPieces() {
+        flippedPieces.clear();
+    }
 }

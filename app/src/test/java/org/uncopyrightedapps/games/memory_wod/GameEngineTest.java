@@ -1,6 +1,8 @@
 package org.uncopyrightedapps.games.memory_wod;
 
 import org.junit.Test;
+import org.uncopyrightedapps.games.memory_wod.engine.GameEngine;
+import org.uncopyrightedapps.games.memory_wod.engine.Piece;
 
 import static org.junit.Assert.*;
 
