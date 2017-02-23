@@ -23,13 +23,16 @@ public class PlayGameActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_play_game);
 
-        gridview = (GridView) findViewById(R.id.gridview);
-        gridview.setNumColumns(mEngine.colCount());
-
-        setAdapter();
-
         mMediaCenter = new MediaCenter(this);
 
+        initButtons();
+
+        gridview = (GridView) findViewById(R.id.gridview);
+        gridview.setNumColumns(mEngine.colCount());
+        setAdapter();
+    }
+
+    private void initButtons() {
         FloatingActionButton restartButton = (FloatingActionButton) findViewById(R.id.restartButton);
         final FloatingActionButton soundButton = (FloatingActionButton) findViewById(R.id.soundButton);
 
@@ -55,7 +58,6 @@ public class PlayGameActivity extends AppCompatActivity {
                 }
             }
         });
-
     }
 
     private void setAdapter() {

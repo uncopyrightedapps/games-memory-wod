@@ -18,9 +18,9 @@ public class PieceAdapter extends BaseAdapter {
 
     private static final String PIECE_BACK = "";
 
+    private final MediaCenter mMediaCenter;
     private Context mContext;
     private GameEngine mEngine;
-    private MediaCenter mMediaCenter;
 
     private SparseArray<View> mViewMap;
 

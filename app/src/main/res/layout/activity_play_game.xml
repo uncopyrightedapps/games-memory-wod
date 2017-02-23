@@ -32,7 +32,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:layout_margin="2dp"
         android:clickable="true"
         android:id="@+id/soundButton"
         android:src="@drawable/ic_volume_up_black_24dp" />
@@ -41,7 +40,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_margin="2dp"
         android:id="@+id/restartButton"
         android:layout_toEndOf="@id/soundButton"
         android:clickable="true"
