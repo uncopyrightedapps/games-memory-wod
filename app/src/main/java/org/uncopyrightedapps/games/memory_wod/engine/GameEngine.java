@@ -1,12 +1,13 @@
 package org.uncopyrightedapps.games.memory_wod.engine;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
-public class GameEngine {
+public class GameEngine implements Serializable {
 
     private int flippedCount;
     private int rowCount;

@@ -20,7 +20,11 @@ public class PlayGameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mEngine = new GameEngine(2, 4);
+        Bundle b = getIntent().getExtras();
+        mEngine = (GameEngine) b.getSerializable(GameEngine.class.getSimpleName());
+        if (mEngine == null) {
+            throw new IllegalArgumentException("Activity must receive a valid GameEngine");
+        }
         mEngine.shuffle();
 
         setContentView(R.layout.activity_play_game);
