@@ -40,6 +40,7 @@ public class PlayGameActivity extends AppCompatActivity {
         });
 
         this.mMediaPlayer = MediaPlayer.create(this, R.raw.song1);
+        this.mMediaPlayer.setLooping(true);
     }
 
     private void setAdapter() {
