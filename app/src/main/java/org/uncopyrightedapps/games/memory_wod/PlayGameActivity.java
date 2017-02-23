@@ -14,6 +14,7 @@ public class PlayGameActivity extends AppCompatActivity {
     private GridView gridview;
     private GameEngine mEngine;
     private MediaPlayer mMediaPlayer;
+    private boolean mSoundOn = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +31,7 @@ public class PlayGameActivity extends AppCompatActivity {
         setAdapter();
 
         FloatingActionButton restartButton = (FloatingActionButton) findViewById(R.id.restartButton);
+        final FloatingActionButton soundButton = (FloatingActionButton) findViewById(R.id.soundButton);
 
         restartButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -38,6 +40,23 @@ public class PlayGameActivity extends AppCompatActivity {
                 setAdapter();
             }
         });
+
+        soundButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mSoundOn) {
+                    mMediaPlayer.pause();
+                    mSoundOn = false;
+                    soundButton.setImageResource(R.drawable.ic_volume_off_black_24dp);
+                } else {
+                    mMediaPlayer.start();
+                    mSoundOn = true;
+                    soundButton.setImageResource(R.drawable.ic_volume_up_black_24dp);
+
+                }
+            }
+        });
+
 
         this.mMediaPlayer = MediaPlayer.create(this, R.raw.song1);
         this.mMediaPlayer.setLooping(true);
