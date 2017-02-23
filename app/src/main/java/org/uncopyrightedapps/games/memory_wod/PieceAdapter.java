@@ -18,7 +18,6 @@ import java.util.List;
 public class PieceAdapter extends BaseAdapter {
 
     private static final String PIECE_BACK = "";
-    private final MediaPlayer mMediaPlayer;
     private final MediaPlayer mMediaPlayerGameOver;
 
     private Context mContext;
@@ -33,7 +32,6 @@ public class PieceAdapter extends BaseAdapter {
 
         this.mViewMap = new SparseArray<>();
 
-        this.mMediaPlayer = MediaPlayer.create(mContext, R.raw.applause);
         this.mMediaPlayerGameOver = MediaPlayer.create(mContext, R.raw.long_applause);
     }
 
@@ -100,6 +98,10 @@ public class PieceAdapter extends BaseAdapter {
 
         @Override
         public void onClick(View v) {
+            if (mEngine.numberOfPiecesFlippedIs(2)) {
+                return;
+            }
+
             mEngine.flip(mPosition);
             TextView textView = (TextView) v;
             textView.setText(getPieceText(mPosition, mPiece));
@@ -123,7 +125,6 @@ public class PieceAdapter extends BaseAdapter {
                     if (mEngine.gameOver()) {
                         mMediaPlayerGameOver.start();
                     } else {
-                        mMediaPlayer.start();
                         mEngine.clearFlippedPieces();
                     }
                 }

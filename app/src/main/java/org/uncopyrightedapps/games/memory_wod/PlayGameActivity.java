@@ -1,5 +1,6 @@
 package org.uncopyrightedapps.games.memory_wod;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.ActionBar;
@@ -12,12 +13,13 @@ import org.uncopyrightedapps.games.memory_wod.engine.GameEngine;
 public class PlayGameActivity extends AppCompatActivity {
     private GridView gridview;
     private GameEngine mEngine;
+    private MediaPlayer mMediaPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mEngine = new GameEngine(4, 4);
+        mEngine = new GameEngine(6, 4);
         mEngine.shuffle();
 
         setContentView(R.layout.activity_play_game);
@@ -27,15 +29,7 @@ public class PlayGameActivity extends AppCompatActivity {
 
         setAdapter();
 
-        FloatingActionButton exitButton = (FloatingActionButton) findViewById(R.id.exitButton);
         FloatingActionButton restartButton = (FloatingActionButton) findViewById(R.id.restartButton);
-
-        exitButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
 
         restartButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,6 +38,8 @@ public class PlayGameActivity extends AppCompatActivity {
                 setAdapter();
             }
         });
+
+        this.mMediaPlayer = MediaPlayer.create(this, R.raw.song1);
     }
 
     private void setAdapter() {
@@ -52,9 +48,22 @@ public class PlayGameActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onRestart() {
+        super.onRestart();
+        hide();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        hide();
+    }
+
+    @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
         hide();
+        mMediaPlayer.start();
     }
 
     private void hide() {
