@@ -1,7 +1,6 @@
 package org.uncopyrightedapps.games.memory_wod;
 
 import android.content.Context;
-import android.media.MediaPlayer;
 import android.os.Handler;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
@@ -18,21 +17,19 @@ import java.util.List;
 public class PieceAdapter extends BaseAdapter {
 
     private static final String PIECE_BACK = "";
-    private final MediaPlayer mMediaPlayerGameOver;
 
     private Context mContext;
     private GameEngine mEngine;
+    private MediaCenter mMediaCenter;
 
     private SparseArray<View> mViewMap;
 
 
-    public PieceAdapter(Context context, GameEngine engine) {
+    public PieceAdapter(Context context, GameEngine engine, MediaCenter mediaCenter) {
         this.mContext = context;
         this.mEngine = engine;
-
+        this.mMediaCenter = mediaCenter;
         this.mViewMap = new SparseArray<>();
-
-        this.mMediaPlayerGameOver = MediaPlayer.create(mContext, R.raw.long_applause);
     }
 
     @Override
@@ -123,7 +120,7 @@ public class PieceAdapter extends BaseAdapter {
                     }, 1000);
                 } else {
                     if (mEngine.gameOver()) {
-                        mMediaPlayerGameOver.start();
+                        mMediaCenter.playGameOverSound();
                     } else {
                         mEngine.clearFlippedPieces();
                     }
