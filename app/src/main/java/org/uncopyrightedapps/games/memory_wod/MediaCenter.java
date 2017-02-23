@@ -8,14 +8,15 @@ public class MediaCenter {
     private MediaPlayer mMediaPlayer;
     private MediaPlayer mMediaPlayerGameOver;
 
-    private boolean soundOn;
+    private boolean mSoundOn;
 
     public MediaCenter(Context context) {
         this.mMediaPlayer = MediaPlayer.create(context, R.raw.song1);
         this.mMediaPlayer.setLooping(true);
 
         this.mMediaPlayerGameOver = MediaPlayer.create(context, R.raw.long_applause);
-        soundOn = true;
+
+        this.mSoundOn = false;
     }
 
     public void startMusic() {
@@ -35,14 +36,14 @@ public class MediaCenter {
     }
 
     public boolean soundIsOn() {
-        return soundOn;
+        return mSoundOn;
     }
 
     public void turnSoundOff() {
-        soundOn = false;
+        mSoundOn = false;
     }
 
     public void turnSoundOn() {
-        soundOn = true;
+        mSoundOn = true;
     }
 }

@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">games-memory-wod</string>
     <string name="title_activity_play_game">Memory WOD</string>
+    <string name="numberOfTries">Jogadas:</string>
 </resources>

@@ -12,6 +12,7 @@ public class GameEngine {
     private int rowCount;
     private int colCount;
     private Piece pieces[];
+    private int numberOfTries;
     private List<Integer> flippedPieces;
 
     private HashMap piecesForNumber = new HashMap();
@@ -36,6 +37,8 @@ public class GameEngine {
 
         flippedPieces = new ArrayList<Integer>();
         flippedCount = 0;
+
+        numberOfTries = 0;
     }
 
     public int rowCount() {
@@ -68,6 +71,10 @@ public class GameEngine {
         if (!piece.isFlipped()) {
             piece.flip();
             flippedPieces.add(position);
+        }
+
+        if (numberOfPiecesFlippedIs(2)) {
+            numberOfTries++;
         }
     }
 
@@ -141,10 +148,15 @@ public class GameEngine {
         clearFlippedPieces();
         shuffle();
         flippedCount = 0;
+        numberOfTries = 0;
     }
 
     public boolean gameOver() {
         return flippedCount == piecesCount() / 2;
+    }
+
+    public int getNumberOfTries() {
+        return numberOfTries;
     }
 }
 

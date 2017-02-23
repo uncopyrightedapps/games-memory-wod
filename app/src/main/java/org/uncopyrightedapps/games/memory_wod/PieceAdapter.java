@@ -19,13 +19,13 @@ public class PieceAdapter extends BaseAdapter {
     private static final String PIECE_BACK = "";
 
     private final MediaCenter mMediaCenter;
-    private Context mContext;
+    private PlayGameActivity mContext;
     private GameEngine mEngine;
+    private TextView mNumberOfTries;
 
     private SparseArray<View> mViewMap;
 
-
-    public PieceAdapter(Context context, GameEngine engine, MediaCenter mediaCenter) {
+    public PieceAdapter(PlayGameActivity context, GameEngine engine, MediaCenter mediaCenter) {
         this.mContext = context;
         this.mEngine = engine;
         this.mMediaCenter = mediaCenter;
@@ -125,6 +125,8 @@ public class PieceAdapter extends BaseAdapter {
                         mEngine.clearFlippedPieces();
                     }
                 }
+
+                mContext.updateNumberOfTries();
             }
         }
     }

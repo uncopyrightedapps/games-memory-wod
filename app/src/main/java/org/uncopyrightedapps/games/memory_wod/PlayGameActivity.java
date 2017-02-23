@@ -6,6 +6,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.GridView;
+import android.widget.TextView;
 
 import org.uncopyrightedapps.games.memory_wod.engine.GameEngine;
 
@@ -13,6 +14,7 @@ public class PlayGameActivity extends AppCompatActivity {
     private GridView gridview;
     private GameEngine mEngine;
     private MediaCenter mMediaCenter;
+    private TextView mNumberOfTries;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +32,13 @@ public class PlayGameActivity extends AppCompatActivity {
         gridview = (GridView) findViewById(R.id.gridview);
         gridview.setNumColumns(mEngine.colCount());
         setAdapter();
+
+        updateNumberOfTries();
+    }
+
+    public void updateNumberOfTries() {
+        mNumberOfTries = (TextView) findViewById(R.id.numberOfTries);
+        mNumberOfTries.setText(getString(R.string.numberOfTries) + String.valueOf(mEngine.getNumberOfTries()));
     }
 
     private void initButtons() {
@@ -40,6 +49,7 @@ public class PlayGameActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 mEngine.reset();
+                updateNumberOfTries();
                 setAdapter();
             }
         });
@@ -61,7 +71,7 @@ public class PlayGameActivity extends AppCompatActivity {
     }
 
     private void setAdapter() {
-        PieceAdapter adapter = new PieceAdapter(getApplicationContext(), mEngine, mMediaCenter);
+        PieceAdapter adapter = new PieceAdapter(this, mEngine, mMediaCenter);
         gridview.setAdapter(adapter);
     }
 
