@@ -38,7 +38,8 @@ public class PlayGameActivity extends AppCompatActivity {
 
     public void updateNumberOfTries() {
         mNumberOfTries = (TextView) findViewById(R.id.numberOfTries);
-        mNumberOfTries.setText(getString(R.string.numberOfTries) + String.valueOf(mEngine.getNumberOfTries()));
+        String formattedValue = String.format(getString(R.string.numberOfTries), String.valueOf(mEngine.getNumberOfTries()));
+        mNumberOfTries.setText(formattedValue);
     }
 
     private void initButtons() {
