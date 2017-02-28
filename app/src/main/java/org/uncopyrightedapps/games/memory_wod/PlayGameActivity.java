@@ -11,7 +11,7 @@ import android.widget.TextView;
 import org.uncopyrightedapps.games.memory_wod.engine.GameEngine;
 
 public class PlayGameActivity extends AppCompatActivity {
-    private GridView gridview;
+    private GridView mGridView;
     private GameEngine mEngine;
     private MediaCenter mMediaCenter;
     private TextView mNumberOfTries;
@@ -33,8 +33,8 @@ public class PlayGameActivity extends AppCompatActivity {
 
         initButtons();
 
-        gridview = (GridView) findViewById(R.id.gridview);
-        gridview.setNumColumns(mEngine.colCount());
+        mGridView = (GridView) findViewById(R.id.gridview);
+        mGridView.setNumColumns(mEngine.colCount());
         setAdapter();
 
         updateNumberOfTries();
@@ -77,7 +77,7 @@ public class PlayGameActivity extends AppCompatActivity {
 
     private void setAdapter() {
         PieceAdapter adapter = new PieceAdapter(this, mEngine, mMediaCenter);
-        gridview.setAdapter(adapter);
+        mGridView.setAdapter(adapter);
     }
 
     @Override
@@ -113,12 +113,16 @@ public class PlayGameActivity extends AppCompatActivity {
         if (actionBar != null) {
             actionBar.hide();
         }
-        gridview.setSystemUiVisibility(
+        mGridView.setSystemUiVisibility(
                 View.SYSTEM_UI_FLAG_LOW_PROFILE
                         | View.SYSTEM_UI_FLAG_FULLSCREEN
                         | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                         | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
                         | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                         | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
+    }
+
+    public GridView getGridView() {
+        return mGridView;
     }
 }

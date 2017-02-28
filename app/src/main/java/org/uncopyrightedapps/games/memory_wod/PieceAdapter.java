@@ -58,6 +58,7 @@ public class PieceAdapter extends BaseAdapter {
             TextView textView = (TextView) pieceView.findViewById(R.id.pieceText);
             textView.setText(getPieceText(position, piece));
 
+            textView.setHeight(mContext.getGridView().getColumnWidth());
             textView.setOnClickListener(new PieceOnClickListener(mEngine, position));
         } else {
             pieceView = convertView;

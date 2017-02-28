@@ -1,8 +1,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="org.uncopyrightedapps.games.memory_wod.PlayGameActivity">
 
     <TextView
@@ -22,19 +22,25 @@
         android:id="@+id/gridview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
         android:columnWidth="75dp"
-        android:stretchMode="spacingWidthUniform"
+        android:minHeight="75dp"
+        android:stretchMode="columnWidth"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/mainTitle"
         />
 
     <android.support.design.widget.FloatingActionButton
+        android:id="@+id/soundButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
+        android:layout_marginStart="5dp"
+        android:layout_marginBottom="2dp"
+        app:useCompatPadding="true"
         android:clickable="true"
-        android:id="@+id/soundButton"
         android:src="@drawable/ic_volume_off_black_24dp" />
 
     <android.support.design.widget.FloatingActionButton
@@ -42,7 +48,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:layout_marginBottom="2dp"
         android:layout_toEndOf="@id/soundButton"
+        app:useCompatPadding="true"
         android:clickable="true"
         android:src="@drawable/ic_autorenew_black_24dp"/>
 
