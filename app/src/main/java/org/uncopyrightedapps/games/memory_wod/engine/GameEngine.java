@@ -1,5 +1,7 @@
 package org.uncopyrightedapps.games.memory_wod.engine;
 
+import android.util.SparseArray;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,7 +19,7 @@ public class GameEngine implements Serializable {
     private int numberOfTries;
     private List<Integer> flippedPieces;
 
-    private HashMap piecesForNumber = new HashMap();
+    private SparseArray<Piece[]> piecesForNumber = new SparseArray<>();
 
     public GameEngine(int rowCount, int colCount, GameType gameType) {
         this.gameType = gameType;
@@ -38,7 +40,7 @@ public class GameEngine implements Serializable {
             piecesForNumber.put(pieceNumber, new Piece[]{piece, piece.getSibling()});
         }
 
-        flippedPieces = new ArrayList<Integer>();
+        flippedPieces = new ArrayList<>();
         flippedCount = 0;
 
         numberOfTries = 0;
@@ -84,7 +86,7 @@ public class GameEngine implements Serializable {
     }
 
     public Piece[] getPiecesForNumber(int pieceNumber) {
-        return (Piece[]) piecesForNumber.get(pieceNumber);
+        return piecesForNumber.get(pieceNumber);
     }
 
     public void shuffle() {

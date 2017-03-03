@@ -15,7 +15,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:textColor="@color/colorAccent"
-        android:text="Memory WOD"
+        android:text="@string/app_name"
         />
 
     <TextView
@@ -28,7 +28,7 @@
         android:gravity="center"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="10dp"
-        android:text="Escolhe a dificuldade:"
+        android:text="@string/msg_choose_game_type"
         />
 
     <Button
@@ -38,7 +38,7 @@
         android:layout_height="wrap_content"
         android:textSize="25sp"
         android:layout_centerHorizontal="true"
-        android:text="Sem Pensar"/>
+        android:text="@string/button_game_type_no_brain"/>
 
     <Button
         android:id="@+id/easyButton"
@@ -47,7 +47,7 @@
         android:layout_height="wrap_content"
         android:textSize="25sp"
         android:layout_centerHorizontal="true"
-        android:text="Fácil"/>
+        android:text="@string/button_game_type_easy"/>
 
     <Button
         android:id="@+id/mediumButton"
@@ -56,7 +56,7 @@
         android:layout_height="wrap_content"
         android:textSize="25sp"
         android:layout_centerHorizontal="true"
-        android:text="Média"/>
+        android:text="@string/button_game_type_medium"/>
 
     <Button
         android:id="@+id/hardButton"
@@ -65,7 +65,7 @@
         android:layout_height="wrap_content"
         android:textSize="25sp"
         android:layout_centerHorizontal="true"
-        android:text="Difícil"/>
+        android:text="@string/button_game_type_hard"/>
 
     <Button
         android:id="@+id/viewScoresButton"
@@ -75,7 +75,7 @@
         android:layout_height="wrap_content"
         android:textSize="15sp"
         android:layout_centerHorizontal="true"
-        android:text="Melhores Pontuações"
+        android:text="@string/button_best_scores"
         style="@style/Widget.AppCompat.Button.Colored"
         />
 

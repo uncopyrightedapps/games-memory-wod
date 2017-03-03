@@ -11,8 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="15sp"
-        android:textStyle="bold"
-        android:text="Nome" />
+        android:textStyle="bold" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -23,8 +22,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="15sp"
-        android:text="Jogadas:" />
+        android:textSize="15sp" />
 
     <TextView
         android:paddingStart="5dp"
@@ -35,7 +33,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="15sp"
-        android:textStyle="bold"
-        android:text="Score" />
+        android:textStyle="bold" />
 
 </LinearLayout>

@@ -79,7 +79,7 @@ public class AddHighScoreActivity extends AbstractGameActivity {
                     e.printStackTrace(); // TODO: handle exception
                 }
             } else {
-                mPlayerName.setError("Tens que escrever o teu nome");
+                mPlayerName.setError(getString(R.string.validation_msg_player_name_required));
             }
         }
     }

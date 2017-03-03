@@ -8,4 +8,12 @@
     <string name="your_score_was">"Número de jogadas: "</string>
     <string name="action_settings">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>
+    <string name="validation_msg_player_name_required">Tens que escrever o teu nome</string>
+    <string name="add_score_ask_player_name">Como te chamas?</string>
+    <string name="button_best_scores">Melhores Pontuações</string>
+    <string name="button_game_type_hard">Difícil</string>
+    <string name="button_game_type_medium">Média</string>
+    <string name="button_game_type_easy">Fácil</string>
+    <string name="button_game_type_no_brain">Sem Pensar</string>
+    <string name="msg_choose_game_type">Escolhe a dificuldade:</string>
 </resources>

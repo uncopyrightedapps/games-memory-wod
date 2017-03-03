@@ -14,7 +14,6 @@ import org.uncopyrightedapps.games.memory_wod.media.MediaCenter;
 public class PlayGameActivity extends AbstractGameActivity {
     private GameEngine mEngine;
     private MediaCenter mMediaCenter;
-    private TextView mNumberOfTries;
 
     public static String ARG_GAME_ENGINE = "GAME_ENGINE";
 
@@ -43,7 +42,7 @@ public class PlayGameActivity extends AbstractGameActivity {
     }
 
     public void updateNumberOfTries() {
-        mNumberOfTries = (TextView) findViewById(R.id.numberOfTries);
+        TextView mNumberOfTries = (TextView) findViewById(R.id.numberOfTries);
         String formattedValue = String.format(getString(R.string.numberOfTries), String.valueOf(mEngine.getNumberOfTries()));
         mNumberOfTries.setText(formattedValue);
     }
