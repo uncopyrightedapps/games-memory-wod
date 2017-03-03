@@ -4,8 +4,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +11,8 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import org.uncopyrightedapps.games.memory_wod.R;
-import org.uncopyrightedapps.games.memory_wod.adapters.ScoresAdapter;
+import org.uncopyrightedapps.games.memory_wod.adapters.ScoresListAdapter;
+import org.uncopyrightedapps.games.memory_wod.adapters.ViewScoresPagerAdapter;
 import org.uncopyrightedapps.games.memory_wod.data.GameDAO;
 import org.uncopyrightedapps.games.memory_wod.engine.GameType;
 import org.uncopyrightedapps.games.memory_wod.engine.Score;
@@ -29,7 +28,10 @@ public class ViewScoresActivity extends AbstractGameActivity {
 
         mView = findViewById(R.id.viewScores);
 
-        SectionsPagerAdapter mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+        ViewScoresPagerAdapter mSectionsPagerAdapter =
+                new ViewScoresPagerAdapter(
+                        this,
+                        getSupportFragmentManager());
 
         ViewPager mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
@@ -77,47 +79,11 @@ public class ViewScoresActivity extends AbstractGameActivity {
             GameDAO mDao = GameDAO.getInstance(rootView.getContext());
             List<Score> items = mDao.getScores(gameType.getCode());
 
-            ScoresAdapter adapter = new ScoresAdapter(rootView.getContext(), items);
+            ScoresListAdapter adapter = new ScoresListAdapter(rootView.getContext(), items);
             scoreList.setAdapter(adapter);
 
             return rootView;
         }
     }
 
-    public class SectionsPagerAdapter extends FragmentPagerAdapter {
-
-        SectionsPagerAdapter(FragmentManager fm) {
-            super(fm);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            return PlaceholderFragment.newInstance(position + 1, getGameType(position));
-        }
-
-        @Override
-        public int getCount() {
-            return 4;
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            GameType gameType = getGameType(position);
-            return gameType != null ? getString(gameType.getResourceStringId()) : null;
-        }
-
-        GameType getGameType(int position) {
-            switch (position) {
-                case 0:
-                    return GameType.NO_BRAIN;
-                case 1:
-                    return GameType.EASY;
-                case 2:
-                    return GameType.MEDIUM;
-                case 3:
-                    return GameType.HARD;
-            }
-            return null;
-        }
-    }
 }
