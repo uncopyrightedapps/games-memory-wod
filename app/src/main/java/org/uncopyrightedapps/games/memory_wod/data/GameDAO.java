@@ -17,6 +17,7 @@ import java.util.List;
 public final class GameDAO {
 
     private static final String LAST_USER_NAME = "last_user_name";
+    private static final int MAX_SCORES_TO_KEEP = 10;
 
     private static GameDAO mInstance = null;
 
@@ -60,8 +61,8 @@ public final class GameDAO {
 
     @NonNull
     private List<Score> trimScoreList(List<Score> scores) {
-        if (scores.size() > 10) {
-            scores = scores.subList(0, 9);
+        if (scores.size() > MAX_SCORES_TO_KEEP) {
+            scores = scores.subList(0, MAX_SCORES_TO_KEEP - 1);
         }
         return scores;
     }
