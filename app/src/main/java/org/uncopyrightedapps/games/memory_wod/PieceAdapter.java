@@ -1,6 +1,8 @@
 package org.uncopyrightedapps.games.memory_wod;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
@@ -122,6 +124,7 @@ public class PieceAdapter extends BaseAdapter {
                 } else {
                     if (mEngine.gameOver()) {
                         mMediaCenter.playGameOverSound();
+                        startAddScoreActivity();
                     } else {
                         mEngine.clearFlippedPieces();
                     }
@@ -129,6 +132,14 @@ public class PieceAdapter extends BaseAdapter {
 
                 mContext.updateNumberOfTries();
             }
+        }
+
+        private void startAddScoreActivity() {
+            Intent intent = new Intent(mContext, AddHighScoreActivity.class);
+            Bundle b = new Bundle();
+            b.putInt(AddHighScoreActivity.ARG_SCORE, mEngine.getNumberOfTries());
+            intent.putExtras(b);
+            mContext.startActivity(intent);
         }
     }
 }

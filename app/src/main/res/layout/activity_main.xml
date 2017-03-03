@@ -32,8 +32,17 @@
         />
 
     <Button
-        android:id="@+id/easyButton"
+        android:id="@+id/noBrainButton"
         android:layout_below="@id/subTitle"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:layout_centerHorizontal="true"
+        android:text="Sem Cérebro"/>
+
+    <Button
+        android:id="@+id/easyButton"
+        android:layout_below="@id/noBrainButton"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:textSize="30sp"

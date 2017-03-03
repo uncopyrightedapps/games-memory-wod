@@ -2,4 +2,7 @@
     <string name="app_name">games-memory-wod</string>
     <string name="title_activity_play_game">Memory WOD</string>
     <string name="numberOfTries">Jogadas: %1$s</string>
+    <string name="title_activity_add_high_score">Adicionar Resultado</string>
+    <string name="save_score">Guardar Pontuação</string>
+    <string name="your_score_was">"A tua pontuação foi: "</string>
 </resources>

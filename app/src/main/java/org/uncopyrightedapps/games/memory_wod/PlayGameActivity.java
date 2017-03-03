@@ -2,26 +2,25 @@ package org.uncopyrightedapps.games.memory_wod;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.GridView;
 import android.widget.TextView;
 
 import org.uncopyrightedapps.games.memory_wod.engine.GameEngine;
 
-public class PlayGameActivity extends AppCompatActivity {
-    private GridView mGridView;
+public class PlayGameActivity extends GameActivity {
     private GameEngine mEngine;
     private MediaCenter mMediaCenter;
     private TextView mNumberOfTries;
+
+    public static String ARG_GAME_ENGINE = "GAME_ENGINE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         Bundle b = getIntent().getExtras();
-        mEngine = (GameEngine) b.getSerializable(GameEngine.class.getSimpleName());
+        mEngine = (GameEngine) b.getSerializable(ARG_GAME_ENGINE);
         if (mEngine == null) {
             throw new IllegalArgumentException("Activity must receive a valid GameEngine");
         }
@@ -33,8 +32,8 @@ public class PlayGameActivity extends AppCompatActivity {
 
         initButtons();
 
-        mGridView = (GridView) findViewById(R.id.gridview);
-        mGridView.setNumColumns(mEngine.colCount());
+        mView = findViewById(R.id.gridview);
+        getGridView().setNumColumns(mEngine.colCount());
         setAdapter();
 
         updateNumberOfTries();
@@ -77,7 +76,7 @@ public class PlayGameActivity extends AppCompatActivity {
 
     private void setAdapter() {
         PieceAdapter adapter = new PieceAdapter(this, mEngine, mMediaCenter);
-        mGridView.setAdapter(adapter);
+        getGridView().setAdapter(adapter);
     }
 
     @Override
@@ -108,21 +107,7 @@ public class PlayGameActivity extends AppCompatActivity {
         mMediaCenter.startMusic();
     }
 
-    private void hide() {
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.hide();
-        }
-        mGridView.setSystemUiVisibility(
-                View.SYSTEM_UI_FLAG_LOW_PROFILE
-                        | View.SYSTEM_UI_FLAG_FULLSCREEN
-                        | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                        | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
-    }
-
     public GridView getGridView() {
-        return mGridView;
+        return (GridView) mView;
     }
 }
