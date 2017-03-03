@@ -50,20 +50,7 @@ public class AddHighScoreActivity extends AbstractGameActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                try {
-                    String playerName = mPlayerName.getText().toString();
-                    mDao.addScore(new Score(playerName, mScore), mGameType.getCode());
-                    mDao.saveLastUserName(playerName);
-
-                    gotoMainActivity();
-                } catch (SnappydbException e) {
-                    e.printStackTrace(); // TODO: handle exception
-                }
-            }
-        });
+        fab.setOnClickListener(new AddScoreFabOnClickListener());
     }
 
     private void gotoMainActivity() {
@@ -76,5 +63,24 @@ public class AddHighScoreActivity extends AbstractGameActivity {
     public void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
         goFullScreenWithNavigation();
+    }
+
+    private class AddScoreFabOnClickListener implements View.OnClickListener {
+        @Override
+        public void onClick(View view) {
+            if (mPlayerName.getText().toString().length() > 0) {
+                try {
+                    String playerName = mPlayerName.getText().toString();
+                    mDao.addScore(new Score(playerName, mScore), mGameType.getCode());
+                    mDao.saveLastUserName(playerName);
+
+                    gotoMainActivity();
+                } catch(SnappydbException e) {
+                    e.printStackTrace(); // TODO: handle exception
+                }
+            } else {
+                mPlayerName.setError("Tens que escrever o teu nome");
+            }
+        }
     }
 }
