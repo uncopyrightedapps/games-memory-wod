@@ -1,6 +1,6 @@
 package org.uncopyrightedapps.games.memory_wod.engine;
 
-import android.util.SparseArray;
+import android.annotation.SuppressLint;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -19,7 +19,8 @@ public class GameEngine implements Serializable {
     private int numberOfTries;
     private List<Integer> flippedPieces;
 
-    private SparseArray<Piece[]> piecesForNumber = new SparseArray<>();
+    @SuppressLint("UseSparseArrays") // SparseArrays are not serializable
+    private HashMap<Integer, Piece[]> piecesForNumber = new HashMap<>();
 
     public GameEngine(int rowCount, int colCount, GameType gameType) {
         this.gameType = gameType;

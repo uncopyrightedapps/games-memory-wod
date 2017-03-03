@@ -12,9 +12,9 @@ import org.uncopyrightedapps.games.memory_wod.engine.Score;
 
 import java.util.List;
 
-public class ScoresAdapter extends ArrayAdapter<Score> {
+public class ScoresListAdapter extends ArrayAdapter<Score> {
 
-    public ScoresAdapter(Context context, List<Score> scores) {
+    public ScoresListAdapter(Context context, List<Score> scores) {
         super(context, 0, scores);
     }
 

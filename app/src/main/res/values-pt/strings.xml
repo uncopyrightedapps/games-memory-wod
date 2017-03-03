@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">WOD da Memória</string>
+    <string name="add_score_ask_player_name">Como te chamas?</string>
+    <string name="button_best_scores">Melhores Pontuações</string>
+    <string name="button_game_type_easy">Fácil</string>
+    <string name="button_game_type_hard">Difícil</string>
+    <string name="button_game_type_no_brain">Sem Pensar</string>
+    <string name="button_game_type_medium">Média</string>
+    <string name="msg_choose_game_type">Escolhe a dificuldade:</string>
+    <string name="numberOfTries">Jogadas: </string>
+    <string name="save_score">Guardar Pontuação</string>
+    <string name="title_activity_add_high_score">Guardar Pontuação</string>
+    <string name="title_activity_play_game">WOD da Memória</string>
+    <string name="title_activity_view_scores">Pontuações</string>
+    <string name="validation_msg_player_name_required">Tens que escrever o teu nome</string>
+    <string name="your_score_was">Número de jogadas:</string>
+</resources>

@@ -43,7 +43,7 @@ public class PlayGameActivity extends AbstractGameActivity {
 
     public void updateNumberOfTries() {
         TextView mNumberOfTries = (TextView) findViewById(R.id.numberOfTries);
-        String formattedValue = String.format(getString(R.string.numberOfTries), String.valueOf(mEngine.getNumberOfTries()));
+        String formattedValue = String.format("%s %s", getString(R.string.numberOfTries), String.valueOf(mEngine.getNumberOfTries()));
         mNumberOfTries.setText(formattedValue);
     }
 

@@ -1,19 +1,17 @@
 <resources>
     <string name="app_name">Memory WOD</string>
     <string name="title_activity_play_game">Memory WOD</string>
-    <string name="numberOfTries">Jogadas: %1$s</string>
-    <string name="title_activity_add_high_score">Guardar Pontuação</string>
-    <string name="title_activity_view_scores">Pontuações</string>
-    <string name="save_score">Guardar Pontuação</string>
-    <string name="your_score_was">"Número de jogadas: "</string>
-    <string name="action_settings">Settings</string>
-    <string name="section_format">Hello World from section: %1$d</string>
-    <string name="validation_msg_player_name_required">Tens que escrever o teu nome</string>
-    <string name="add_score_ask_player_name">Como te chamas?</string>
-    <string name="button_best_scores">Melhores Pontuações</string>
-    <string name="button_game_type_hard">Difícil</string>
-    <string name="button_game_type_medium">Média</string>
-    <string name="button_game_type_easy">Fácil</string>
-    <string name="button_game_type_no_brain">Sem Pensar</string>
-    <string name="msg_choose_game_type">Escolhe a dificuldade:</string>
+    <string name="numberOfTries">Tries: </string>
+    <string name="title_activity_add_high_score">Save Score</string>
+    <string name="title_activity_view_scores">Scores</string>
+    <string name="save_score">Save Score</string>
+    <string name="your_score_was">Number of tries:</string>
+    <string name="validation_msg_player_name_required">You must type your name</string>
+    <string name="add_score_ask_player_name">What\'s your name?</string>
+    <string name="button_best_scores">Best Scores</string>
+    <string name="button_game_type_hard">Hard</string>
+    <string name="button_game_type_medium">Medium</string>
+    <string name="button_game_type_easy">Easy</string>
+    <string name="button_game_type_no_brain">No Brain</string>
+    <string name="msg_choose_game_type">Choose the level:</string>
 </resources>

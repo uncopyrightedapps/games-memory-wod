@@ -103,7 +103,7 @@ public class ViewScoresActivity extends AbstractGameActivity {
         @Override
         public CharSequence getPageTitle(int position) {
             GameType gameType = getGameType(position);
-            return gameType != null ? gameType.toString() : null;
+            return gameType != null ? getString(gameType.getResourceStringId()) : null;
         }
 
         GameType getGameType(int position) {

@@ -9,7 +9,7 @@ import static org.junit.Assert.*;
 public class GameEngineTest {
     @Test
     public void canBeInitializedWithNumberOfRowsAndColumns() throws Exception {
-        GameEngine engine = new GameEngine(4, 8);
+        GameEngine engine = new GameEngine(4, 8, null);
 
         assertTrue("Incorrect row count", engine.rowCount() == 4);
         assertTrue("Incorrect columns count", engine.colCount() == 8);
@@ -19,7 +19,7 @@ public class GameEngineTest {
     @Test
     public void numberOfPriecesCannotBeOdd() throws Exception {
         try {
-            new GameEngine(3, 3);
+            new GameEngine(3, 3, null);
             fail("Constructor should have throw IllegalArgumentException on odd piece count");
         } catch (IllegalArgumentException ignored) {
         }
@@ -27,7 +27,7 @@ public class GameEngineTest {
 
     @Test
     public void piecesAreNotFlippedAfterInitialization() throws Exception {
-        GameEngine engine = new GameEngine(4, 8);
+        GameEngine engine = new GameEngine(4, 8, null);
         for (int r = 0; r < engine.rowCount(); r++) {
             for (int c = 0; c < engine.colCount(); c++) {
                 assertFalse("Piece shouldn't be flipped", engine.isFlipped(r, c));
@@ -37,7 +37,7 @@ public class GameEngineTest {
 
     @Test
     public void pieceIsFlippedAfterFlipActions() throws Exception {
-        GameEngine engine = new GameEngine(4, 8);
+        GameEngine engine = new GameEngine(4, 8, null);
 
         engine.flip(1, 1);
         assertTrue("Piece should be flipped", engine.isFlipped(1, 1));
@@ -48,7 +48,7 @@ public class GameEngineTest {
 
     @Test
     public void thereAreTwoPiecesForEachPieceNumber() throws Exception {
-        GameEngine engine = new GameEngine(4, 8);
+        GameEngine engine = new GameEngine(4, 8, null);
         for (int i = 0; i < engine.piecesCount() / 2; i++) {
             Piece piece[] = engine.getPiecesForNumber(i);
             assertEquals("There number of piece count for a piece number is invalid", 2, piece.length);
@@ -63,7 +63,7 @@ public class GameEngineTest {
 
     @Test
     public void shuffleChangesTheOrderOfPieces() throws Exception {
-        GameEngine engine = new GameEngine(4, 8);
+        GameEngine engine = new GameEngine(4, 8, null);
         engine.shuffle();
 
         Piece[] pieces = engine.getPieces();
@@ -74,7 +74,7 @@ public class GameEngineTest {
 
     @Test
     public void testToString() throws Exception {
-        GameEngine engine = new GameEngine(4, 8);
+        GameEngine engine = new GameEngine(4, 8, null);
         System.out.println(engine.toString());
 
         engine.shuffle();
