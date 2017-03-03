@@ -37,11 +37,33 @@ public final class GameDAO {
         return mInstance;
     }
 
-    public void addScore(Score score, String scoreType) throws SnappydbException {
+    public void addScore(Score newScore, String scoreType) throws SnappydbException {
         List<Score> scores = getScores(scoreType);
-        scores.add(score);
-        Collections.sort(scores);
-        mDb.put(scoreType, scores.toArray());
+
+        if (!isScoreDuplicated(scores, newScore)) {
+            scores.add(newScore);
+            Collections.sort(scores);
+            scores = trimScoreList(scores);
+            mDb.put(scoreType, scores.toArray());
+        }
+    }
+
+    private boolean isScoreDuplicated(List<Score> scores, Score newScore) {
+        for (Score score : scores) {
+            if (score.getScore() == newScore.getScore()
+                    && score.getPlayerName().equals(newScore.getPlayerName())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @NonNull
+    private List<Score> trimScoreList(List<Score> scores) {
+        if (scores.size() > 10) {
+            scores = scores.subList(0, 9);
+        }
+        return scores;
     }
 
     @NonNull
