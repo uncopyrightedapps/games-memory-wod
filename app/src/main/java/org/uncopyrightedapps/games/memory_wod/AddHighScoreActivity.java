@@ -3,7 +3,6 @@ package org.uncopyrightedapps.games.memory_wod;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -11,14 +10,17 @@ import android.widget.TextView;
 import com.snappydb.SnappydbException;
 
 import org.uncopyrightedapps.games.memory_wod.data.GameDAO;
+import org.uncopyrightedapps.games.memory_wod.engine.GameType;
 import org.uncopyrightedapps.games.memory_wod.engine.Score;
 
-public class AddHighScoreActivity extends GameActivity {
+public class AddHighScoreActivity extends AbstractGameActivity {
 
     public static final String ARG_SCORE = "SCORE";
+    public static final String ARG_GAME_TYPE = "GAME_TYPE";
     private EditText mPlayerName;
     private int mScore;
     private GameDAO mDao;
+    private GameType mGameType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,12 +33,12 @@ public class AddHighScoreActivity extends GameActivity {
         if (mScore == -1) {
             throw new IllegalArgumentException("Activity must receive a valid score");
         }
-
-        try {
-            mDao = GameDAO.getInstance(mView.getContext());
-        } catch (SnappydbException e) {
-            e.printStackTrace();
+        mGameType = (GameType) b.getSerializable(ARG_GAME_TYPE);
+        if (mGameType == null) {
+            throw new IllegalArgumentException("Activity must receive a valid game type");
         }
+
+        mDao = GameDAO.getInstance(mView.getContext());
 
         mPlayerName = (EditText) findViewById(R.id.playerName);
         mPlayerName.setText(mDao.getLastUserName());
@@ -44,8 +46,6 @@ public class AddHighScoreActivity extends GameActivity {
         TextView scoreTV = (TextView) findViewById(R.id.achievedScore);
         scoreTV.setText(String.format("%s%s", getString(R.string.your_score_was), String.valueOf(mScore)));
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -54,7 +54,7 @@ public class AddHighScoreActivity extends GameActivity {
             public void onClick(View view) {
                 try {
                     String playerName = mPlayerName.getText().toString();
-                    mDao.addScore(new Score(playerName, mScore));
+                    mDao.addScore(new Score(playerName, mScore), mGameType.getCode());
                     mDao.saveLastUserName(playerName);
 
                     gotoMainActivity();
@@ -71,5 +71,9 @@ public class AddHighScoreActivity extends GameActivity {
         finish();
     }
 
-
+    @Override
+    public void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        goFullScreenWithNavigation();
+    }
 }

@@ -10,6 +10,7 @@ import java.util.Random;
 public class GameEngine implements Serializable {
 
     private int flippedCount;
+    private GameType gameType;
     private int rowCount;
     private int colCount;
     private Piece pieces[];
@@ -18,7 +19,8 @@ public class GameEngine implements Serializable {
 
     private HashMap piecesForNumber = new HashMap();
 
-    public GameEngine(int rowCount, int colCount) {
+    public GameEngine(int rowCount, int colCount, GameType gameType) {
+        this.gameType = gameType;
         this.rowCount = rowCount;
         this.colCount = colCount;
 
@@ -41,6 +43,8 @@ public class GameEngine implements Serializable {
 
         numberOfTries = 0;
     }
+
+
 
     public int rowCount() {
         return rowCount;
@@ -158,6 +162,10 @@ public class GameEngine implements Serializable {
 
     public int getNumberOfTries() {
         return numberOfTries;
+    }
+
+    public GameType getGameType() {
+        return gameType;
     }
 }
 

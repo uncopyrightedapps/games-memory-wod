@@ -1,7 +1,9 @@
-package org.uncopyrightedapps.games.memory_wod;
+package org.uncopyrightedapps.games.memory_wod.media;
 
 import android.content.Context;
 import android.media.MediaPlayer;
+
+import org.uncopyrightedapps.games.memory_wod.R;
 
 public class MediaCenter {
 

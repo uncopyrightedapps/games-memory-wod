@@ -6,9 +6,11 @@ import android.view.View;
 import android.widget.GridView;
 import android.widget.TextView;
 
+import org.uncopyrightedapps.games.memory_wod.adapters.PieceAdapter;
 import org.uncopyrightedapps.games.memory_wod.engine.GameEngine;
+import org.uncopyrightedapps.games.memory_wod.media.MediaCenter;
 
-public class PlayGameActivity extends GameActivity {
+public class PlayGameActivity extends AbstractGameActivity {
     private GameEngine mEngine;
     private MediaCenter mMediaCenter;
     private TextView mNumberOfTries;
@@ -82,7 +84,7 @@ public class PlayGameActivity extends GameActivity {
     @Override
     protected void onRestart() {
         super.onRestart();
-        hide();
+        goFullScreen();
         mMediaCenter.startMusic();
 
     }
@@ -90,7 +92,7 @@ public class PlayGameActivity extends GameActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        hide();
+        goFullScreen();
         mMediaCenter.startMusic();
     }
 
@@ -103,11 +105,12 @@ public class PlayGameActivity extends GameActivity {
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-        hide();
+        goFullScreen();
         mMediaCenter.startMusic();
     }
 
     public GridView getGridView() {
         return (GridView) mView;
     }
+
 }

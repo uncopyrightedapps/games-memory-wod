@@ -10,9 +10,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:textSize="50sp"
+        android:textSize="40sp"
         android:gravity="center"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:textColor="@color/colorAccent"
         android:text="Memory WOD"
@@ -36,36 +36,48 @@
         android:layout_below="@id/subTitle"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:textSize="30sp"
+        android:textSize="25sp"
         android:layout_centerHorizontal="true"
-        android:text="Sem Cérebro"/>
+        android:text="Sem Pensar"/>
 
     <Button
         android:id="@+id/easyButton"
         android:layout_below="@id/noBrainButton"
-        android:layout_width="150dp"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:textSize="30sp"
+        android:textSize="25sp"
         android:layout_centerHorizontal="true"
         android:text="Fácil"/>
 
     <Button
         android:id="@+id/mediumButton"
         android:layout_below="@id/easyButton"
-        android:layout_width="150dp"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:textSize="30sp"
+        android:textSize="25sp"
         android:layout_centerHorizontal="true"
         android:text="Média"/>
 
     <Button
         android:id="@+id/hardButton"
         android:layout_below="@id/mediumButton"
-        android:layout_width="150dp"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:textSize="30sp"
+        android:textSize="25sp"
         android:layout_centerHorizontal="true"
         android:text="Difícil"/>
+
+    <Button
+        android:id="@+id/viewScoresButton"
+        android:layout_below="@id/hardButton"
+        android:layout_marginTop="25dp"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:layout_centerHorizontal="true"
+        android:text="Melhores Pontuações"
+        style="@style/Widget.AppCompat.Button.Colored"
+        />
 
 
     <TextView

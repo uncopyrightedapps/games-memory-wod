@@ -1,4 +1,4 @@
-package org.uncopyrightedapps.games.memory_wod;
+package org.uncopyrightedapps.games.memory_wod.adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,6 +11,10 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import org.uncopyrightedapps.games.memory_wod.AddHighScoreActivity;
+import org.uncopyrightedapps.games.memory_wod.media.MediaCenter;
+import org.uncopyrightedapps.games.memory_wod.PlayGameActivity;
+import org.uncopyrightedapps.games.memory_wod.R;
 import org.uncopyrightedapps.games.memory_wod.engine.GameEngine;
 import org.uncopyrightedapps.games.memory_wod.engine.Piece;
 
@@ -138,6 +142,7 @@ public class PieceAdapter extends BaseAdapter {
             Intent intent = new Intent(mContext, AddHighScoreActivity.class);
             Bundle b = new Bundle();
             b.putInt(AddHighScoreActivity.ARG_SCORE, mEngine.getNumberOfTries());
+            b.putSerializable(AddHighScoreActivity.ARG_GAME_TYPE, mEngine.getGameType());
             intent.putExtras(b);
             mContext.startActivity(intent);
         }
