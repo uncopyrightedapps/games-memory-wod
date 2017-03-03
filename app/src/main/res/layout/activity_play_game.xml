@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="org.uncopyrightedapps.games.memory_wod.PlayGameActivity">
+    tools:context="org.uncopyrightedapps.games.memory_wod.activities.PlayGameActivity">
 
     <TextView
         android:layout_width="match_parent"

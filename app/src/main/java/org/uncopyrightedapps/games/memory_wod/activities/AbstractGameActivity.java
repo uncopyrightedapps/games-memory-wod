@@ -1,4 +1,4 @@
-package org.uncopyrightedapps.games.memory_wod;
+package org.uncopyrightedapps.games.memory_wod.activities;
 
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;

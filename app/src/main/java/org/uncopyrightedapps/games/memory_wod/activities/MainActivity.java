@@ -1,10 +1,11 @@
-package org.uncopyrightedapps.games.memory_wod;
+package org.uncopyrightedapps.games.memory_wod.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import org.uncopyrightedapps.games.memory_wod.R;
 import org.uncopyrightedapps.games.memory_wod.engine.GameEngine;
 import org.uncopyrightedapps.games.memory_wod.engine.GameType;
 

@@ -1,4 +1,4 @@
-package org.uncopyrightedapps.games.memory_wod;
+package org.uncopyrightedapps.games.memory_wod.activities;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.GridView;
 import android.widget.TextView;
 
+import org.uncopyrightedapps.games.memory_wod.R;
 import org.uncopyrightedapps.games.memory_wod.adapters.PieceAdapter;
 import org.uncopyrightedapps.games.memory_wod.engine.GameEngine;
 import org.uncopyrightedapps.games.memory_wod.media.MediaCenter;

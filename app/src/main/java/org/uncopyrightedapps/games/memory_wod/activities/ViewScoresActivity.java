@@ -1,4 +1,4 @@
-package org.uncopyrightedapps.games.memory_wod;
+package org.uncopyrightedapps.games.memory_wod.activities;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+import org.uncopyrightedapps.games.memory_wod.R;
 import org.uncopyrightedapps.games.memory_wod.adapters.ScoresAdapter;
 import org.uncopyrightedapps.games.memory_wod.data.GameDAO;
 import org.uncopyrightedapps.games.memory_wod.engine.GameType;

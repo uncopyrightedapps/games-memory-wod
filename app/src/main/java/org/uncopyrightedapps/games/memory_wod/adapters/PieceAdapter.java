@@ -11,9 +11,9 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import org.uncopyrightedapps.games.memory_wod.AddHighScoreActivity;
+import org.uncopyrightedapps.games.memory_wod.activities.AddHighScoreActivity;
 import org.uncopyrightedapps.games.memory_wod.media.MediaCenter;
-import org.uncopyrightedapps.games.memory_wod.PlayGameActivity;
+import org.uncopyrightedapps.games.memory_wod.activities.PlayGameActivity;
 import org.uncopyrightedapps.games.memory_wod.R;
 import org.uncopyrightedapps.games.memory_wod.engine.GameEngine;
 import org.uncopyrightedapps.games.memory_wod.engine.Piece;

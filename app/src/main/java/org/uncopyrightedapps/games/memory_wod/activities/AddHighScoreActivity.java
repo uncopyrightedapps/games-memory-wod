@@ -1,4 +1,4 @@
-package org.uncopyrightedapps.games.memory_wod;
+package org.uncopyrightedapps.games.memory_wod.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.snappydb.SnappydbException;
 
+import org.uncopyrightedapps.games.memory_wod.R;
 import org.uncopyrightedapps.games.memory_wod.data.GameDAO;
 import org.uncopyrightedapps.games.memory_wod.engine.GameType;
 import org.uncopyrightedapps.games.memory_wod.engine.Score;
