@@ -1,41 +1,34 @@
 package org.uncopyrightedapps.games.memory_wod.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
-import org.uncopyrightedapps.games.memory_wod.activities.AddHighScoreActivity;
-import org.uncopyrightedapps.games.memory_wod.media.MediaCenter;
-import org.uncopyrightedapps.games.memory_wod.activities.PlayGameActivity;
 import org.uncopyrightedapps.games.memory_wod.R;
+import org.uncopyrightedapps.games.memory_wod.activities.AddHighScoreActivity;
+import org.uncopyrightedapps.games.memory_wod.activities.PlayGameActivity;
 import org.uncopyrightedapps.games.memory_wod.engine.GameEngine;
 import org.uncopyrightedapps.games.memory_wod.engine.Piece;
-
-import java.util.List;
+import org.uncopyrightedapps.games.memory_wod.media.MediaCenter;
 
 public class PieceAdapter extends BaseAdapter {
-
-    private static final String PIECE_BACK = "";
 
     private final MediaCenter mMediaCenter;
     private PlayGameActivity mContext;
     private GameEngine mEngine;
-    private TextView mNumberOfTries;
-
-    private SparseArray<View> mViewMap;
 
     public PieceAdapter(PlayGameActivity context, GameEngine engine, MediaCenter mediaCenter) {
         this.mContext = context;
         this.mEngine = engine;
         this.mMediaCenter = mediaCenter;
-        this.mViewMap = new SparseArray<>();
     }
 
     @Override
@@ -50,54 +43,70 @@ public class PieceAdapter extends BaseAdapter {
 
     @Override
     public long getItemId(int position) {
-        return 0;
+        return position;
     }
 
+    @SuppressLint("InflateParams")
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View pieceView;
-        if (convertView == null) {
+
+        if (!mEngine.isFlipped(position)) {
             pieceView = inflater().inflate(R.layout.piece_view, null);
-
-            Piece piece = (Piece) getItem(position);
-
             TextView textView = (TextView) pieceView.findViewById(R.id.pieceText);
-            textView.setText(getPieceText(position, piece));
-
             textView.setHeight(mContext.getGridView().getColumnWidth());
             textView.setOnClickListener(new PieceOnClickListener(mEngine, position));
         } else {
-            pieceView = convertView;
-
-            Piece piece = (Piece) getItem(position);
-
-            TextView textView = (TextView) pieceView.findViewById(R.id.pieceText);
-            textView.setText(getPieceText(position, piece));
+            pieceView = inflater().inflate(R.layout.piece_view_flipped, null);
+            ImageView imageView = (ImageView) pieceView.findViewById(R.id.pieceImage);
+            imageView.setImageResource(getBackgroundDrawableFrom(position));
         }
+
         return pieceView;
+    }
+
+    private int getBackgroundDrawableFrom(int position) {
+        Piece piece = (Piece) getItem(position);
+        switch (piece.getPieceNumber()) {
+            case 0:
+                return R.drawable.minnie0_web;
+            case 1:
+                return R.drawable.minnie1_web;
+            case 2:
+                return R.drawable.minnie2_web;
+            case 3:
+                return R.drawable.minnie3_web;
+            case 4:
+                return R.drawable.minnie4_web;
+            case 5:
+                return R.drawable.minnie5_web;
+            case 6:
+                return R.drawable.minnie6_web;
+            case 7:
+                return R.drawable.minnie7_web;
+            case 8:
+                return R.drawable.minnie8_web;
+            case 9:
+                return R.drawable.minnie9_web;
+            case 10:
+                return R.drawable.minnie10_web;
+            case 11:
+                return R.drawable.minnie11_web;
+        }
+        return -1;
     }
 
     private LayoutInflater inflater() {
         return (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
-    private String getPieceText(int position, Piece piece) {
-        if (mEngine.isFlipped(position)) {
-            return Integer.toString(piece.getPieceNumber());
-        } else {
-            return PIECE_BACK;
-        }
-    }
-
     private class PieceOnClickListener implements View.OnClickListener {
         private GameEngine mEngine;
         private int mPosition;
-        private Piece mPiece;
 
-        public PieceOnClickListener(GameEngine engine, int position) {
+        PieceOnClickListener(GameEngine engine, int position) {
             this.mEngine = engine;
             this.mPosition = position;
-            this.mPiece = mEngine.getPieces()[mPosition];
         }
 
         @Override
@@ -107,35 +116,33 @@ public class PieceAdapter extends BaseAdapter {
             }
 
             mEngine.flip(mPosition);
-            TextView textView = (TextView) v;
-            textView.setText(getPieceText(mPosition, mPiece));
-
-            mViewMap.put(mPosition, textView);
+            notifyDataSetChanged();
 
             if (mEngine.numberOfPiecesFlippedIs(2)) {
                 if (mEngine.matchNotFound()) {
-                    Handler handler = new Handler();
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            List<Integer> flippedPieces = mEngine.resetFlippedPieces();
-                            for (int position : flippedPieces) {
-                                TextView pieceTextView = (TextView) mViewMap.get(position);
-                                pieceTextView.setText(PIECE_BACK);
-                            }
-                        }
-                    }, 1000);
+                    flipPiecesDown();
                 } else {
                     if (mEngine.gameOver()) {
                         mMediaCenter.playGameOverSound();
                         startAddScoreActivity();
+                        mContext.finish();
                     } else {
                         mEngine.clearFlippedPieces();
                     }
                 }
-
                 mContext.updateNumberOfTries();
             }
+        }
+
+        private void flipPiecesDown() {
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    mEngine.resetFlippedPieces();
+                    notifyDataSetChanged();
+                }
+            }, 1000);
         }
 
         private void startAddScoreActivity() {

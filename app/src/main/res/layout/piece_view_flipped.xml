@@ -4,11 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/pieceText"
+    <org.uncopyrightedapps.games.memory_wod.media.GameImageView
+        android:id="@+id/pieceImage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:textSize="30sp"
-        style="@android:style/Widget.Holo.Button" />
-
+        android:scaleType="centerCrop"
+        />
 </LinearLayout>
