@@ -69,29 +69,29 @@ public class PieceAdapter extends BaseAdapter {
         Piece piece = (Piece) getItem(position);
         switch (piece.getPieceNumber()) {
             case 0:
-                return R.drawable.minnie0_web;
+                return R.drawable.animais0;
             case 1:
-                return R.drawable.minnie1_web;
+                return R.drawable.animais1;
             case 2:
-                return R.drawable.minnie2_web;
+                return R.drawable.animais2;
             case 3:
-                return R.drawable.minnie3_web;
+                return R.drawable.animais3;
             case 4:
-                return R.drawable.minnie4_web;
+                return R.drawable.animais4;
             case 5:
-                return R.drawable.minnie5_web;
+                return R.drawable.animais5;
             case 6:
-                return R.drawable.minnie6_web;
+                return R.drawable.animais6;
             case 7:
-                return R.drawable.minnie7_web;
+                return R.drawable.animais7;
             case 8:
-                return R.drawable.minnie8_web;
+                return R.drawable.animais8;
             case 9:
-                return R.drawable.minnie9_web;
+                return R.drawable.animais9;
             case 10:
-                return R.drawable.minnie10_web;
+                return R.drawable.animais10;
             case 11:
-                return R.drawable.minnie11_web;
+                return R.drawable.animais11;
         }
         return -1;
     }

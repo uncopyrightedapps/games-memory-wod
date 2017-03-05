@@ -3,7 +3,9 @@ package org.uncopyrightedapps.games.memory_wod.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -51,6 +53,8 @@ public class AddHighScoreActivity extends AbstractGameActivity {
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new AddScoreFabOnClickListener());
+
+        setActionDoneSavesScore();
     }
 
     private void gotoMainActivity() {
@@ -63,6 +67,21 @@ public class AddHighScoreActivity extends AbstractGameActivity {
     public void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
         goFullScreenWithNavigation();
+    }
+
+    private void setActionDoneSavesScore() {
+        ((EditText) findViewById(R.id.playerName)).setOnEditorActionListener(
+                new EditText.OnEditorActionListener() {
+                    @Override
+                    public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                        if (actionId == EditorInfo.IME_ACTION_DONE) {
+                            FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+                            fab.callOnClick();
+                            return true; // consume.
+                        }
+                        return false; // pass on to other listeners.
+                    }
+                });
     }
 
     private class AddScoreFabOnClickListener implements View.OnClickListener {
