@@ -28,10 +28,11 @@
             android:theme="@style/FullscreenTheme" />
         <activity
             android:name=".activities.AddHighScoreActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:configChanges="orientation|screenSize"
             android:label="@string/title_activity_add_high_score"
             android:parentActivityName=".activities.MainActivity"
             android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateVisible"
             android:theme="@style/FullscreenTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
