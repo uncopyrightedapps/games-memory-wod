@@ -14,4 +14,10 @@
     <string name="button_game_type_easy">Easy</string>
     <string name="button_game_type_no_brain">No Brain</string>
     <string name="msg_choose_game_type">Choose the level:</string>
+    <string name="msg_choose_graphics">Choose the graphics:</string>
+    <string-array name="graphics">
+        <item>Animals</item>
+        <item>Drawings</item>
+        <item>Bugs</item>
+    </string-array>
 </resources>

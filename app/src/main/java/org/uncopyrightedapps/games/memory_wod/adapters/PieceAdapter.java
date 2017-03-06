@@ -67,33 +67,13 @@ public class PieceAdapter extends BaseAdapter {
 
     private int getBackgroundDrawableFrom(int position) {
         Piece piece = (Piece) getItem(position);
-        switch (piece.getPieceNumber()) {
-            case 0:
-                return R.drawable.animais0;
-            case 1:
-                return R.drawable.animais1;
-            case 2:
-                return R.drawable.animais2;
-            case 3:
-                return R.drawable.animais3;
-            case 4:
-                return R.drawable.animais4;
-            case 5:
-                return R.drawable.animais5;
-            case 6:
-                return R.drawable.animais6;
-            case 7:
-                return R.drawable.animais7;
-            case 8:
-                return R.drawable.animais8;
-            case 9:
-                return R.drawable.animais9;
-            case 10:
-                return R.drawable.animais10;
-            case 11:
-                return R.drawable.animais11;
-        }
-        return -1;
+        int pieceNumber = piece.getPieceNumber();
+        return getDrawableIdentifier(pieceNumber);
+    }
+
+    private Integer getDrawableIdentifier(int pieceNumber) {
+        String graphicSuffix = mContext.getGraphic().getFilePrefix();
+        return mContext.getResources().getIdentifier(graphicSuffix + pieceNumber, "drawable", mContext.getPackageName());
     }
 
     private LayoutInflater inflater() {

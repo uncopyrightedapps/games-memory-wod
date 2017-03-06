@@ -15,4 +15,10 @@
     <string name="title_activity_view_scores">Pontuações</string>
     <string name="validation_msg_player_name_required">Tens que escrever o teu nome</string>
     <string name="your_score_was">Número de jogadas:</string>
+    <string name="msg_choose_graphics">Escolhe os bonecos:</string>
+    <string-array name="graphics">
+        <item>Animais</item>
+        <item>Desenhos</item>
+        <item>Insectos</item>
+    </string-array>
 </resources>

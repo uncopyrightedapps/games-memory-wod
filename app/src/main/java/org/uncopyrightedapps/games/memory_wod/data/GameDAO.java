@@ -7,6 +7,7 @@ import com.snappydb.DB;
 import com.snappydb.DBFactory;
 import com.snappydb.SnappydbException;
 
+import org.uncopyrightedapps.games.memory_wod.engine.Graphic;
 import org.uncopyrightedapps.games.memory_wod.engine.Score;
 
 import java.util.ArrayList;
@@ -17,35 +18,41 @@ import java.util.List;
 public final class GameDAO {
 
     private static final String LAST_USER_NAME = "last_user_name";
+    private static final String LAST_GRAPHIC = "last_graphic";
     private static final int MAX_SCORES_TO_KEEP = 10;
 
     private static GameDAO mInstance = null;
 
     private DB mDb = null;
 
-    private GameDAO(Context context) throws SnappydbException {
-        mDb = DBFactory.open(context);
+    private GameDAO(Context context)  {
+        try {
+            mDb = DBFactory.open(context);
+        } catch (SnappydbException e) {
+            throw new RuntimeException("Error starting database", e);
+        }
     }
 
     public static GameDAO getInstance(Context context)  {
         if (mInstance == null) {
-            try {
-                mInstance = new GameDAO(context);
-            } catch (SnappydbException e) {
-                e.printStackTrace();
-            }
+            mInstance = new GameDAO(context);
         }
         return mInstance;
     }
 
-    public void addScore(Score newScore, String scoreType) throws SnappydbException {
+
+    public void addScore(Score newScore, String scoreType) {
         List<Score> scores = getScores(scoreType);
 
         if (!isScoreDuplicated(scores, newScore)) {
             scores.add(newScore);
             Collections.sort(scores);
             scores = trimScoreList(scores);
-            mDb.put(scoreType, scores.toArray());
+            try {
+                mDb.put(scoreType, scores.toArray());
+            } catch (SnappydbException e) {
+                throw new RuntimeException("Error adding score", e);
+            }
         }
     }
 
@@ -80,16 +87,36 @@ public final class GameDAO {
         }
     }
 
+    public Graphic getLastGraphic()  {
+        try {
+            return mDb.exists(LAST_GRAPHIC) ? Graphic.getByCode(mDb.getInt(LAST_GRAPHIC)) : Graphic.ANIMALS;
+        } catch (SnappydbException e) {
+            throw new RuntimeException("Error loading last graphic", e);
+        }
+    }
+
+    public void saveLastGraphic(Graphic graphic)  {
+        try {
+            mDb.putInt(LAST_GRAPHIC, graphic.getCode());
+        } catch (SnappydbException e) {
+            throw new RuntimeException("Error saving last graphic", e);
+        }
+    }
+
     public String getLastUserName()  {
         try {
             return mDb.exists(LAST_USER_NAME) ? mDb.get(LAST_USER_NAME) : null ;
         } catch (SnappydbException e) {
-            return null;
+            throw new RuntimeException("Error loading last user name", e);
         }
     }
 
-    public void saveLastUserName(String userName) throws SnappydbException {
-        mDb.put(LAST_USER_NAME, userName);
+    public void saveLastUserName(String userName) {
+        try {
+            mDb.put(LAST_USER_NAME, userName);
+        } catch (SnappydbException e) {
+            throw new RuntimeException("Error saving last user name", e);
+        }
     }
 
     @Override

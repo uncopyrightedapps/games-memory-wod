@@ -26,7 +26,7 @@
         android:layout_centerHorizontal="true"
         android:textSize="20sp"
         android:gravity="center"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:layout_marginBottom="10dp"
         android:text="@string/msg_choose_game_type"
         />
@@ -38,7 +38,8 @@
         android:layout_height="wrap_content"
         android:textSize="25sp"
         android:layout_centerHorizontal="true"
-        android:text="@string/button_game_type_no_brain"/>
+        android:text="@string/button_game_type_no_brain"
+        android:visibility="gone"/>
 
     <Button
         android:id="@+id/easyButton"
@@ -67,9 +68,30 @@
         android:layout_centerHorizontal="true"
         android:text="@string/button_game_type_hard"/>
 
+    <TextView
+        android:id="@+id/chooseGraphics"
+        android:layout_below="@id/hardButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="10dp"
+        android:text="@string/msg_choose_graphics"
+        />
+
+    <Spinner
+        android:id="@+id/graphicsSpinner"
+        android:layout_below="@id/chooseGraphics"
+        android:layout_centerHorizontal="true"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:spinnerMode="dropdown"/>
+
     <Button
         android:id="@+id/viewScoresButton"
-        android:layout_below="@id/hardButton"
+        android:layout_below="@id/graphicsSpinner"
         android:layout_marginTop="25dp"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
@@ -78,7 +100,6 @@
         android:text="@string/button_best_scores"
         style="@style/Widget.AppCompat.Button.Colored"
         />
-
 
     <TextView
         android:id="@+id/version"

@@ -9,13 +9,17 @@ import android.widget.TextView;
 import org.uncopyrightedapps.games.memory_wod.R;
 import org.uncopyrightedapps.games.memory_wod.adapters.PieceAdapter;
 import org.uncopyrightedapps.games.memory_wod.engine.GameEngine;
+import org.uncopyrightedapps.games.memory_wod.engine.Graphic;
 import org.uncopyrightedapps.games.memory_wod.media.MediaCenter;
 
 public class PlayGameActivity extends AbstractGameActivity {
     private GameEngine mEngine;
     private MediaCenter mMediaCenter;
+    private Graphic mGraphic;
 
     public static String ARG_GAME_ENGINE = "GAME_ENGINE";
+    public static final String ARG_GRAPHICS = "GRAPHICS";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +31,11 @@ public class PlayGameActivity extends AbstractGameActivity {
             throw new IllegalArgumentException("Activity must receive a valid GameEngine");
         }
         mEngine.shuffle();
+
+        mGraphic = (Graphic) b.getSerializable(ARG_GRAPHICS);
+        if (mGraphic == null) {
+            mGraphic = Graphic.ANIMALS;
+        }
 
         setContentView(R.layout.activity_play_game);
 
@@ -113,4 +122,7 @@ public class PlayGameActivity extends AbstractGameActivity {
         return (GridView) mView;
     }
 
+    public Graphic getGraphic() {
+        return mGraphic;
+    }
 }

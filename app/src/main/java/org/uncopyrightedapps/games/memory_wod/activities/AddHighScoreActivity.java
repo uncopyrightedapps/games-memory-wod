@@ -9,8 +9,6 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.snappydb.SnappydbException;
-
 import org.uncopyrightedapps.games.memory_wod.R;
 import org.uncopyrightedapps.games.memory_wod.data.GameDAO;
 import org.uncopyrightedapps.games.memory_wod.engine.GameType;
@@ -88,15 +86,11 @@ public class AddHighScoreActivity extends AbstractGameActivity {
         @Override
         public void onClick(View view) {
             if (mPlayerName.getText().toString().length() > 0) {
-                try {
-                    String playerName = mPlayerName.getText().toString();
-                    mDao.addScore(new Score(playerName, mScore), mGameType.getCode());
-                    mDao.saveLastUserName(playerName);
+                String playerName = mPlayerName.getText().toString();
+                mDao.addScore(new Score(playerName, mScore), mGameType.getCode());
+                mDao.saveLastUserName(playerName);
 
-                    gotoMainActivity();
-                } catch(SnappydbException e) {
-                    e.printStackTrace(); // TODO: handle exception
-                }
+                gotoMainActivity();
             } else {
                 mPlayerName.setError(getString(R.string.validation_msg_player_name_required));
             }
